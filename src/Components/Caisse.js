@@ -1,17 +1,20 @@
 import React, { useState } from "react"
 import axios from 'axios';
+import Menu from './Menu';
 
 export default function Caisse() {
   const [commands, addCommand] = useState([]);
   const [name, setName] = useState("")
-  const [pizzas] = useState(["Marga", "Végé", "Reine", "Poulet", "PP", "Kebab", "PC", "Raclette", "3F", "Orientale", "Beouf", "Saumon", "Tartif", "CM"]);
-  const [options] = useState(["Vegan","sans salade","Base tomate","Base crème" ]);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
     console.log(`Submitting Name ${name}`)
-}
-
+  }
+  function resetCommand() {
+    if (window.confirm("Attention vous allez annuler toute la commande")) {
+      addCommand([]);
+    }
+  }
   function sendCommand() {
     const toPost = {
       "name": name,
@@ -31,73 +34,36 @@ export default function Caisse() {
   return (
     <main>
       <h1>Ecran caisse</h1>
-      <div className="left_side">
-        <form onSubmit={handleSubmit}>
-          <input 
-          type="text" 
-          placeholder="Nom"
-          value={name}
-          onChange={e => setName(e.target.value)}/>
-        </form>
-        <div className="table_selection pizza">
-          {pizzas.map(function (pizza, i) {
-            return (
-              <button className="item" onClick={() => {
-                addCommand([
-                  ...commands,
-                  {
-                    "id": commands.length,
-                    "name": pizza,
-                    "type": "pizza",
-                    "status": "pas commencee",
-                    "last_update": (new Date()).toUTCString(),
-                    "option": (pizza === "Marga" ? "j'aime pas la marga" : undefined)
-                  }
-                ]);
-                console.log(commands)
-              }}>{pizza}</button>
-            );
-          })}
-          <br/>
-          <button>Fritures</button>
-          <button>Options</button>
-          <br/>
-          <button className="item" onClick={() => console.log(commands,name)}>Log les nouvelles valeurs</button>
+      <div className="ctnr_caisse">
+        <div className="left side">
+          <form onSubmit={handleSubmit}>
+            <h3>Nom du client:</h3>
+            <input
+              type="text"
+              placeholder="Nom"
+              value={name}
+              onChange={e => setName(e.target.value)} />
+          </form>
+          <Menu
+            commands={commands}
+            addCommand={addCommand} />
         </div>
-        <div className="table_selection options">
-          {options.map(function (option, i) {
-            return (
-              <button className="item" onClick={() => {
-                console.log(commands.at(-1))
-                addCommand(commands.slice(0,-1).concat( 
-                  [{
-                    "id": commands.at(-1).id,
-                    "name": commands.at(-1).name,
-                    "type": commands.at(-1).type,
-                    "status": "pas commencee",
-                    "last_update": commands.at(-1).last_update,
-                    "option": commands.at(-1).option ? commands.at(-1).option + ", " + option : "option " + option ,
-                  }
-                ]));
-                
-              }}>{option}</button>
-            );
-          })}
-          <br/>
-          <button>Fritures</button>
-          <button>Options</button>
-          <br/>
-          <button className="item" onClick={() => console.log(commands,name)}>Log les nouvelles valeurs</button>
+        <div className="right side">
+          <h2>Recap de la commande</h2>
+          <div className="recap">
+            <ul>
+              {commands.map(function (command, i) {
+                return (
+                  <li>{command.name + (command.option ? (" - " + command.option) : "")}</li>
+                )
+              })}
+            </ul>
+          </div>
+          <dib className="btns">
+            <button className="danger" onClick={resetCommand}>Annuler</button>
+            <button className="green" onClick={sendCommand}>Envoyer</button>
+          </dib>
         </div>
-      </div>
-      <div className="right_side">
-        <h2>Recap de la commande</h2>
-        {commands.map(function (command, i) {
-          return (
-            <p>{command.name + (command.option ? (" - " + command.option) : "")}</p>
-          )
-        })}
-        <button onClick={sendCommand}>Envoyer</button>
       </div>
     </main>
   );
