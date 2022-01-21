@@ -38,11 +38,17 @@ export default function Caisse() {
         <div className="left side">
           <form onSubmit={handleSubmit}>
             <h3>Nom du client:</h3>
-            <input
-              type="text"
-              placeholder="Nom"
-              value={name}
-              onChange={e => setName(e.target.value)} />
+            <div className="name_input">
+              <input
+                type="text"
+                placeholder="Nom"
+                value={name}
+                onChange={e => setName(e.target.value)} />
+              <div className="cross" onClick={()=>setName("")}>
+                <div className="close"></div>
+              </div>
+            </div>
+            
           </form>
           <Menu
             commands={commands}

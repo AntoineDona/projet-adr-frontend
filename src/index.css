@@ -42,6 +42,53 @@ form{
   box-shadow: var(--shadow);
 }
 
+.name_input{
+  display: flex;
+}
+
+.name_input .cross{
+  height: 20px;
+  width: 20px;
+  background-color: var(--red);
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity ease 0.2s;
+}
+.name_input .cross:hover{
+  opacity: 1;
+}
+
+.close {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+.close:before, .close:after {
+  position: absolute;
+  left: 9.5px;
+  top: 2.8px;
+  content: ' ';
+  height: 13px;
+  width: 2px;
+  background-color: white;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}
+
+input[type="text"]{
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.212);
+}
+
 .side{
   width: 50%;
   min-width: 500px;
