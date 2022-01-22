@@ -4,7 +4,8 @@ import Menu from './Menu';
 
 export default function Caisse() {
   const [commands, addCommand] = useState([]);
-  const [name, setName] = useState("")
+  const [name, setName] = useState("");
+  const [tab, setTab] = useState("pizzas");
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -15,9 +16,19 @@ export default function Caisse() {
       addCommand([]);
     }
   }
+  function validateCommand(){
+    if (name === ""){
+      if (window.confirm("Vous n'avez pas entré de nom, voulez-vous envoyer la commande quand même?")) {
+        sendCommand([]);
+        setTab("pizzas")
+      }
+    } else{
+      sendCommand()
+    }
+  }
   function sendCommand() {
     const toPost = {
-      "name": name,
+      "name": name===""? " " : name,
       "date": (new Date()).toUTCString(),
       "content": commands,
     }
@@ -52,7 +63,10 @@ export default function Caisse() {
           </form>
           <Menu
             commands={commands}
-            addCommand={addCommand} />
+            addCommand={addCommand}
+            tab={tab}
+            setTab={setTab}
+          />
         </div>
         <div className="right side">
           <h2>Recap de la commande</h2>
@@ -65,10 +79,10 @@ export default function Caisse() {
               })}
             </ul>
           </div>
-          <dib className="btns">
+          <div className="btns">
             <button className="danger" onClick={resetCommand}>Annuler</button>
-            <button className="green" onClick={sendCommand}>Envoyer</button>
-          </dib>
+            <button className="green" onClick={validateCommand}>Envoyer</button>
+          </div>
         </div>
       </div>
     </main>

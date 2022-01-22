@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 
-export default function Menu({commands, addCommand }) {
-    const [tab, setTab] = useState("pizzas");
+export default function Menu({commands, addCommand, tab, setTab}) {
     let complementary_tab = "fritures";
 
     const [contenu] = useState({
