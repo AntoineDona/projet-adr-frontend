@@ -8,6 +8,20 @@ export default function Commands({ tab }) {
   let url = "https://adr.cs-campus.fr/projet-adr/server/api/commands/gettype/" + tab.type;
   console.log(url)
 
+  let buttonToRender = <></>
+  if (tab.id === "waiting") {
+    console.log("on est attend");
+    buttonToRender =
+      <button className="green" onClick={handleClick}>En cuisine</button>
+  } else if (tab.id === "enkouizine") {
+    console.log("on est en kouizine");
+    buttonToRender =
+      <>
+        <button className="green" onClick={handleClick}>Prête</button>
+        <button className="danger" onClick={handleClick}>Attente</button>
+      </>
+  }
+
   useEffect(() => {
     const getCommands = () => {
       axios.get(url)
@@ -20,12 +34,25 @@ export default function Commands({ tab }) {
     getCommands();
   }, [setCommand, url])
 
+  function handleClick() {
+
+  }
+
   function mapCommand(command, foodtype) {
     return (
       command.content.map(function (item) {
         if (item.status === tab.type & item.type === foodtype) {
           return (
-            <div key={item.id} className="article">{item.name}{item.option ? " - " + item.option : ""}</div>
+            <div key={item.id} className="article">
+              <div className="article_infos">
+                {item.name}
+                <br />
+                <span className="option">
+                  {item.option ? item.option : ""}
+                </span>
+              </div>
+              {buttonToRender}
+            </div>
           )
         } else {
           return (" ")
@@ -42,7 +69,7 @@ export default function Commands({ tab }) {
         if (mappingOfCommand.some(e => typeof (e) === 'object')) {
           return (
             <div key={command._id} className="commande">
-              <h3>{command.name === " " ? "Command sans nom" : "Commande de " + command.name}</h3>
+              <h3>{command.name === " " ? "Sans Nom" : command.name}</h3>
               <div className="articles">
                 {mappingOfCommand}
               </div>
