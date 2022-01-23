@@ -33,8 +33,10 @@ export default function Caisse() {
       "content": commands,
     }
     axios.post(`https://adr.cs-campus.fr/projet-adr/server/api/commands/add`, toPost)
+    // axios.post(`http://localhost:8080/api/commands/add`, toPost)
       .then(res => {
         console.log("it worked!!");
+        setName("");
         addCommand([]);
       })
       .catch(error => {
@@ -74,7 +76,7 @@ export default function Caisse() {
             <ul>
               {commands.map(function (command, i) {
                 return (
-                  <li>{command.name + (command.option ? (" - " + command.option) : "")}</li>
+                  <li key={i}>{command.name + (command.option ? (" - " + command.option) : "")}</li>
                 )
               })}
             </ul>
