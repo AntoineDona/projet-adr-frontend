@@ -25,21 +25,67 @@ button{
   box-shadow: var(--shadow);
 }
 
+nav{
+  display: flex;
+  overflow-y:visible;
+  height: 70px;
+}
+
+nav ul{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: auto;
+  width: 700px;
+  list-style-type: none;
+}
+
+nav li button{
+  min-width: 100px;
+  padding: 20px;
+}
+
+#logo_musee{
+  width: 60px;
+  height: 70px;
+  margin-right: auto;
+}
+
 main{
   text-align: center;
 }
 
-.ctnr_caisse{
+.ctnr_caisse, .ctnr_commands{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
+
+.side{
+  width: 50%;
+  min-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.ctnr_commands .side {
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
 
 form{
   padding: 15px;
   border-radius: 5px;
   background-color: white;
   box-shadow: var(--shadow);
+}
+form h3{
+  font-size: 15px;
+  margin: 0;
+  margin-bottom: 15px;
 }
 
 .name_input{
@@ -89,20 +135,11 @@ input[type="text"]{
   border-bottom: 1px solid rgba(0, 0, 0, 0.212);
 }
 
-.side{
-  width: 50%;
-  min-width: 500px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex-shrink: 0;
-}
-
 .table_selection{
   margin: 20px 0;
-  width: 90%;
+  width: 80%;
   max-width:500px;
-  height: 400px;
+  height: 300px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   row-gap: 5px;
@@ -120,18 +157,19 @@ font-size: 14px;
 }
 
 .recap{
-  border: 1px solid black;
   width: 90%;
-  max-width: 500px ;
-  height: 300px;
-  overflow-y: scroll;
+  max-width: 300px ;
+  height: 250px;
+  overflow-y: auto;
   text-align: left;
   margin: 20px 0;
+  border-radius: 5px;
+  box-shadow: var(--shadow);
 }
 
 .right .btns{
   width: 80%;
-  max-width:500px;
+  max-width:300px;
   display: flex;
   justify-content: space-between;
 }
