@@ -46,7 +46,6 @@ export default function Caisse() {
   }
   return (
     <main>
-      <h1>Ecran caisse</h1>
       <div className="ctnr_caisse">
         <div className="left side">
           <form onSubmit={handleSubmit}>

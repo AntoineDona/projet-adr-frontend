@@ -49,6 +49,7 @@ function App() {
     <>
       <Header
         tabs={tabs}
+        currentTab={tab}
         setTab={setTab}
       />
       {toRender}

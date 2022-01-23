@@ -82,7 +82,6 @@ export default function Commands({ tab }) {
   console.log(commands)
   return (
     <main>
-      <h1>{tab.title}</h1>
       <div className="ctnr_commands">
         <div className="left side ">
           <h2>Pizzas</h2>
