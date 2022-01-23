@@ -59,13 +59,11 @@ nav li button:hover{
   transition: color, background-color 0.5s ease;
 }
 
-.selected{
+nav li button.selected{
   color: white;
   background-color: var(--blue);
-  transition: opacity 0.5s ease;
-}
-.selected:focus{
   opacity: 1;
+  transition: opacity 0.5s ease;
 }
 
 #logo_musee{
@@ -87,7 +85,7 @@ main{
 
 .side{
   width: 50%;
-  min-width: 500px;
+  min-width: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -179,6 +177,12 @@ font-size: 14px;
 .special_btn{
   background-color: var(--blue);
   color: white;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.special_btn.selected{
+  opacity: 0.5;
 }
 
 .recap{

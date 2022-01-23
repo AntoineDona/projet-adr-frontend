@@ -5,8 +5,8 @@ export default function Menu({commands, addCommand, tab, setTab}) {
 
     const [contenu] = useState({
         pizzas: ["Marga", "Végé", "Reine", "Poulet", "PP", "Kebab", "PC", "Raclette", "3F", "Orientale", "Beouf", "Saumon", "Tartif", "CM"],
-        fritures: ["Frites", "Onion Rings", "Calamar", "Wings", "Nems", "Nuggets"," "," "," "," "," "," "," "," "],
-        options: ["Vegan", "sans salade", "Base tomate", "Base crème"," "," "," "," "," "," "," "," "," "," "]
+        fritures: ["Frites", "Onion Rings", "Calamar", "Wings", "Nems", "Nuggets"," "," "," "," "," "," "," "],
+        options: ["Vegan", "sans salade", "Base tomate", "Base crème"," "," "," "," "," "," "," "," "," "]
     })
 
     if (tab === "options") {
@@ -34,13 +34,16 @@ export default function Menu({commands, addCommand, tab, setTab}) {
                 }
                 <button className="special_btn" onClick={() => setTab("pizzas")}>Pizzas</button>
                 <button className="special_btn" onClick={() => setTab("fritures")}>Fritures</button>
+                <button className="special_btn selected">Options</button>
             </div>
         )
     } else {
+        let toAdd = <></>
         if (tab === "pizzas"){
             complementary_tab="fritures";
         } else if (tab === "fritures") {
             complementary_tab="pizzas";
+            toAdd= <button className="special_btn selected">Fritures</button>
         }
         return (
             <div className={"table_selection"}>
@@ -65,6 +68,7 @@ export default function Menu({commands, addCommand, tab, setTab}) {
                     })
                 }
                 <button className="special_btn" onClick={() => setTab(complementary_tab)}>{complementary_tab.charAt(0).toUpperCase() + complementary_tab.slice(1)}</button>
+                {toAdd}
                 <button className="special_btn" onClick={() => setTab("options")}>Options</button>
                 </div>
         )
