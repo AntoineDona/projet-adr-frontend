@@ -13,16 +13,16 @@ export default function Menu({commands, addCommand, tab, setTab}) {
         return (
             <div className={"table_selection"}>
                 {
-                    contenu.options.map(function (option) {
+                    contenu.options.map(function (option,i) {
                         return (
-                            <button className="item" onClick={() => {
+                            <button key={i} className="item" onClick={() => {
                                 console.log(commands.at(-1))
                                 addCommand(commands.slice(0, -1).concat(
                                     [{
                                         "id": commands.at(-1).id,
                                         "name": commands.at(-1).name,
                                         "type": commands.at(-1).type,
-                                        "status": "pas commencee",
+                                        "status": "waiting",
                                         "last_update": commands.at(-1).last_update,
                                         "option": commands.at(-1).option ? commands.at(-1).option + ", " + option : "option " + option,
                                     }
@@ -45,16 +45,16 @@ export default function Menu({commands, addCommand, tab, setTab}) {
         return (
             <div className={"table_selection"}>
                 {
-                    contenu[tab].map(function (item) {
+                    contenu[tab].map(function (item,i) {
                         return (
-                            <button className="item" onClick={() => {
+                            <button key={i} className="item" onClick={() => {
                                 addCommand([
                                     ...commands,
                                     {
                                         "id": commands.length,
                                         "name": item,
                                         "type": tab,
-                                        "status": "pas commencee",
+                                        "status": "waiting",
                                         "last_update": (new Date()).toUTCString(),
                                         "option": undefined
                                     }
