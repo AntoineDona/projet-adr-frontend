@@ -4,27 +4,13 @@ import { useEffect, useState } from "react"
 export default function Commands({ tab }) {
 
   const [commands, setCommand] = useState([])
-  // let url = "http://localhost:8080/api/commands/gettype/" + tab.type;
-  let url = "https://adr.cs-campus.fr/projet-adr/server/api/commands/gettype/" + tab.type;
-  console.log(url)
-
-  let buttonToRender = <></>
-  if (tab.id === "waiting") {
-    console.log("on est attend");
-    buttonToRender =
-      <button className="green" onClick={handleClick}>En cuisine</button>
-  } else if (tab.id === "enkouizine") {
-    console.log("on est en kouizine");
-    buttonToRender =
-      <>
-        <button className="green" onClick={handleClick}>Prête</button>
-        <button className="danger" onClick={handleClick}>Attente</button>
-      </>
-  }
+  // let geturl = "http://localhost:8080/api/commands/gettype/" + tab.type;
+  let geturl = "https://adr.cs-campus.fr/projet-adr/server/api/commands/gettype/" + tab.type;
 
   useEffect(() => {
+    console.log("running useEffect");
     const getCommands = () => {
-      axios.get(url)
+      axios.get(geturl)
         .then(res => {
           setCommand(res.data);
         })
@@ -32,10 +18,63 @@ export default function Commands({ tab }) {
     }
 
     getCommands();
-  }, [setCommand, url])
+  }, [setCommand, geturl])
 
-  function handleClick() {
+  function updateCommands(id,item_id,newstatus){
+    // console.log("runing updateCommands");
+    let new_commands = [...commands]
+    // console.log("commandes", new_commands);
+    for (let command of new_commands){
+      // console.log("une commande:", command)
+      // console.log(id, command._id);
+      if (command._id === id){
+        // console.log("dans la première boucle");
+        for(let item of command.content){
+          if (item.id === item_id){
+            item.status = newstatus;
+            // console.log("value changed", item.status)
+          }
+        }
+      }
+    }
+    setCommand(new_commands)
+  }
 
+  function renderButton(command,item){
+    // console.log("command", command);
+    if (tab.id === "waiting") {
+      return(
+        <button className="green" onClick={() => handleClick("enkouizine",command,item)}>En cuisine</button>
+      )
+    } else if (tab.id === "enkouizine") {
+      return(
+        <>
+          <button className="green" onClick={()=>handleClick("archived",command,item)}>Prête</button>
+          <button className="danger" onClick={() =>handleClick("waiting",command,item)}>Attente</button>
+        </>
+      )
+    } else if (tab.id === "archived"){
+      return(
+        <>
+          <button className="danger" onClick={() =>handleClick("enkouizine",command,item)}>Desarchiver</button>
+        </>
+      )
+    }
+  }
+
+  function handleClick(newstatus,command,item) {
+
+    // let puturl = "http://localhost:8080/api/commands/changestatus";
+    let puturl = "https://adr.cs-campus.fr/projet-adr/server/api/commands/changestatus";
+    const toPut = { 
+      id:command._id,
+      item_id:item.id,
+      status: newstatus };
+    console.log("toPut",toPut);
+    axios.put(puturl, toPut)
+        .then(() => {
+          updateCommands(toPut.id, toPut.item_id, toPut.status)
+        });
   }
 
   function mapCommand(command, foodtype) {
@@ -51,7 +90,7 @@ export default function Commands({ tab }) {
                   {item.option ? item.option : ""}
                 </span>
               </div>
-              {buttonToRender}
+              {renderButton(command,item)}
             </div>
           )
         } else {
@@ -65,7 +104,7 @@ export default function Commands({ tab }) {
     return (
       commands.map((command) => {
         let mappingOfCommand = mapCommand(command, foodtype);
-        console.log("contains object? ", mappingOfCommand.some(e => typeof (e) === 'object'));
+        // console.log("contains object? ", mappingOfCommand.some(e => typeof (e) === 'object'));
         if (mappingOfCommand.some(e => typeof (e) === 'object')) {
           return (
             <div key={command._id} className="commande">
@@ -79,7 +118,7 @@ export default function Commands({ tab }) {
       }))
   }
 
-  console.log(commands)
+  // console.log(commands)
   return (
     <main>
       <div className="ctnr_commands">
