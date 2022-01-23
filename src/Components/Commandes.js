@@ -4,7 +4,8 @@ import { useEffect, useState } from "react"
 export default function Commands({ tab }) {
 
   const [commands, setCommand] = useState([])
-  let url = "http://localhost:8080/api/commands/gettype/" + tab.type;
+  // let url = "http://localhost:8080/api/commands/gettype/" + tab.type;
+  let url = "https://adr.cs-campus.fr/projet-adr/server/api/commands/gettype/" + tab.type;
   console.log(url)
 
   useEffect(() => {
