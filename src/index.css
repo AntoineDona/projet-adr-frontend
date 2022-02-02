@@ -96,11 +96,6 @@ main{
   flex-shrink: 0;
 }
 
-.ctnr_commands .side {
-  max-height: 80vh;
-  overflow-y: auto;
-}
-
 /* Ecran Caisse ----------------------------------- */
 
 form{
@@ -231,7 +226,15 @@ font-size: 14px;
 
 /* Ecrans commandes ----------------------------------------- */
 
+.ctnr_commands .side {
+  max-height: 80vh;
+  /* max-width: 50vw; */
+  /* min-width: 200px; */
+  /* margin: 0 40px; */
+  overflow-y: auto;
+}
 .commande{
+  /* width: 90%; */
   padding: 5px;
   border-radius: 5px;
   box-shadow: var(--shadow);
@@ -240,16 +243,29 @@ font-size: 14px;
 }
 
 .commande h3{
+  max-width: 100%;
   font-size: 15px;
   margin: 10px;
+}
+
+.cmd_infos{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cmd_infos span{
+  margin-right: 10px;
+  color: rgba(0, 0, 0, 0.445);
+  font-size: 10px;
 }
 
 .article{
   display: flex;
   align-items: center;
   padding: 4px 8px;
-  margin: 5px;
-  width: 300px;
+  margin: 5px 0;
+  min-width: 300px;
   min-height: 30px;
   border-radius: 5px;
   box-shadow: var(--shadow);
