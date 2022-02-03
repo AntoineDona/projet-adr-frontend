@@ -1,4 +1,4 @@
-:root{
+:root {
   --shadow: 0px 1px 4px 2px rgba(0, 0, 0, 0.1);
   --red: #D44545;
   --green: #51D445;
@@ -8,19 +8,30 @@
 @font-face {
   font-family: "Roboto";
   src: local("Roboto"),
-   url("./fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+    url("./fonts/Roboto/Roboto-Regular.ttf") format("truetype");
   font-weight: normal;
-  }
+}
+
+html{
+  height: 100%;
+}
 
 body {
   margin: 0;
-  background-color: white;
+  /* background-color: white; */
+  background-color: whitesmoke;
+  /* background: #50a3a2;
+  background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+  background: -moz-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+  background: -o-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+  background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%); */
   font-family: Roboto;
   max-height: 100vh;
   overflow-y: scroll;
+  height: 100%;
 }
 
-button{
+button {
   cursor: pointer;
   background-color: white;
   border: none;
@@ -28,12 +39,12 @@ button{
   box-shadow: var(--shadow);
 }
 
-nav{
+nav {
   display: flex;
-  overflow-y:visible;
+  overflow-y: visible;
 }
 
-nav ul{
+nav ul {
   display: flex;
   padding: 8px;
   border-radius: 5px;
@@ -48,37 +59,39 @@ nav ul{
   box-shadow: inset var(--shadow);
 }
 
-nav li button{
+nav li button {
   min-width: 100px;
   padding: 15px;
   transition: color, background-color 0.5s ease;
 }
 
-nav li button:hover{
+nav li button:hover {
   color: white;
   background-color: var(--blue);
   opacity: 0.5;
   transition: color, background-color 0.5s ease;
 }
 
-nav li button.selected{
+nav li button.selected {
   color: white;
   background-color: var(--blue);
   opacity: 1;
   transition: opacity 0.5s ease;
 }
 
-#logo_musee{
+#logo_musee {
   width: 80px;
   height: 100px;
   margin-right: auto;
 }
 
-main{
+main {
   text-align: center;
 }
 
-.ctnr_caisse, .ecran_commands, .ecran_clients{
+.ctnr_caisse,
+.ecran_commands,
+.ecran_clients {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -86,7 +99,7 @@ main{
   /* overflow: hidden; */
 }
 
-.side{
+.side {
   width: 50%;
   min-width: 400px;
   margin: 20px 0;
@@ -98,23 +111,24 @@ main{
 
 /* Ecran Caisse ----------------------------------- */
 
-form{
+form {
   padding: 15px;
   border-radius: 5px;
   background-color: white;
   box-shadow: var(--shadow);
 }
-form h3{
+
+form h3 {
   font-size: 12px;
   margin: 0;
   margin-bottom: 12px;
 }
 
-.name_input{
+.name_input {
   display: flex;
 }
 
-.name_input .cross{
+.name_input .cross {
   height: 20px;
   width: 20px;
   background-color: var(--red);
@@ -124,7 +138,8 @@ form h3{
   opacity: 0.5;
   transition: opacity ease 0.2s;
 }
-.name_input .cross:hover{
+
+.name_input .cross:hover {
   opacity: 1;
 }
 
@@ -134,9 +149,11 @@ form h3{
   height: 20px;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
 }
-.close:before, .close:after {
+
+.close:before,
+.close:after {
   position: absolute;
   left: 9.5px;
   top: 2.8px;
@@ -145,22 +162,24 @@ form h3{
   width: 2px;
   background-color: white;
 }
+
 .close:before {
   transform: rotate(45deg);
 }
+
 .close:after {
   transform: rotate(-45deg);
 }
 
-input[type="text"]{
+input[type="text"] {
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.212);
 }
 
-.table_selection{
+.table_selection {
   margin: 20px 0;
   width: 80%;
-  max-width:500px;
+  max-width: 500px;
   height: 300px;
   max-height: 50vh;
   display: grid;
@@ -170,28 +189,29 @@ input[type="text"]{
   grid-template-rows: repeat(4, 1fr)
 }
 
-.table_selection button{
-font-size: 14px;
+.table_selection button {
+  font-size: 14px;
 }
 
-.special_btn{
+.special_btn {
   background-color: var(--blue);
   color: white;
   opacity: 1;
   transition: opacity 0.5s ease;
 }
 
-.special_btn.selected{
+.special_btn.selected {
   opacity: 0.5;
 }
 
-.ctnr_caisse .right.side h2{
+.ctnr_caisse .right.side h2 {
   margin: 12px 0;
 }
 
-.recap{
+.recap {
+  background-color: white;
   width: 90%;
-  max-width: 300px ;
+  max-width: 300px;
   height: 250px;
   max-height: 40vh;
   overflow-y: auto;
@@ -201,45 +221,49 @@ font-size: 14px;
   box-shadow: var(--shadow);
 }
 
-.right .btns{
+.right .btns {
   width: 80%;
-  max-width:300px;
+  max-width: 300px;
   display: flex;
   justify-content: space-between;
 }
 
 .btns button {
   width: 100px;
-  height:50px;
+  height: 50px;
   font-size: 15px;
   color: white;
 }
 
-.danger{
+.danger {
   color: white;
   background-color: var(--red);
 }
-.green{
+
+.green {
   color: white;
   background-color: var(--green);
 }
 
 /* Ecrans commandes ----------------------------------------- */
 
-.ecran_commands .side,.ecran_clients .side {
+.ecran_commands .side,
+.ecran_clients .side {
   max-width: 40vw;
   min-width: 320px;
   margin: 10px;
 }
-.ecran_clients{
+
+.ecran_clients {
   margin-top: -80px;
+  max-height: none;
 }
 
-.side h2{
+.side h2 {
   width: 100%;
 }
 
-.commands{
+.commands {
   overflow-y: auto;
   max-height: 60vh;
   padding: 20px;
@@ -251,49 +275,55 @@ font-size: 14px;
   align-items: center;
 }
 
-.commands.client{
+.commands.client {
+  padding: 0;
   width: 40vw;
+  max-height: 100vh;
+  height: 100vh;
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  flex-direction: column;
+  /* justify-content: space-around; */
   flex-wrap: wrap;
+  overflow: hidden;
 }
 
-.commande{
+.commande {
+  background-color: white;
   width: 90%;
   padding: 5px;
   border-radius: 5px;
   box-shadow: var(--shadow);
   text-align: left;
-  margin: 5px 0;
+  margin: 11px;
   max-width: 300px;
   min-width: 200px;
 }
 
-.client .commande{
+.client .commande {
   flex-shrink: 0;
+  width: auto;
   /* width: unset; */
 }
 
-.commande h3{
+.commande h3 {
   max-width: 100%;
   font-size: 15px;
   margin: 10px;
 }
 
-.cmd_infos{
+.cmd_infos {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.cmd_infos span{
+.cmd_infos span {
   margin-right: 10px;
   color: rgba(0, 0, 0, 0.445);
   font-size: 10px;
 }
 
-.article{
+.article {
   display: flex;
   align-items: center;
   padding: 4px 8px;
@@ -303,19 +333,19 @@ font-size: 14px;
   box-shadow: var(--shadow);
 }
 
-.article_infos{
+.article_infos {
   margin-right: auto;
   max-width: 70%;
 }
 
-.article button{
+.article button {
   min-height: 30px;
   height: 100%;
   margin-left: 5px;
   min-width: 60px;
 }
 
-.article_infos .option{
+.article_infos .option {
   opacity: 0.7;
   font-size: 10px;
 }
