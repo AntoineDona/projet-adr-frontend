@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import Header from "./Components/Header"
 import Caisse from "./Components/Caisse"
 import Commandes from "./Components/Commandes"
+import Client from "./Components/Client"
 
 
 function App() {
@@ -25,6 +26,11 @@ function App() {
       "id": "archived",
       "type": "archived",
       "title": "Archivées"
+    },
+    {
+      "id": "client",
+      "type": "client",
+      "title": "Clients"
     }
   ]
 
@@ -41,6 +47,8 @@ function App() {
   
   if (tab.id === "caisse") {
     toRender = <Caisse tab={tab} />
+  } else if (tab.id === "client" ){
+    toRender = <Client />
   } else {
     toRender = <Commandes tab={tab} />
   }

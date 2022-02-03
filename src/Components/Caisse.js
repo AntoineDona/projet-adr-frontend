@@ -31,6 +31,7 @@ export default function Caisse() {
       "name": name===""? " " : name,
       "date": (new Date()).toUTCString(),
       "content": commands,
+      "last_update":(new Date()).toUTCString() 
     }
     axios.post(`https://adr.cs-campus.fr/projet-adr/server/api/commands/add`, toPost)
     // axios.post(`http://localhost:8080/api/commands/add`, toPost)

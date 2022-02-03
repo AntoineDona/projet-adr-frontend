@@ -33,11 +33,12 @@ export default function Commands({ tab }) {
     return () => clearInterval(interval);
   }, [setCommand, geturl])
 
-  function updateCommands(id, item_id, newstatus) {
+  function updateCommands(id, item_id, newstatus,last_update) {
     // console.log("runing updateCommands");
     let new_commands = [...commands]
     // console.log("commandes", new_commands);
     for (let command of new_commands) {
+      command.last_update = last_update;
       // console.log("une commande:", command)
       // console.log(id, command._id);
       if (command._id === id) {
@@ -77,26 +78,28 @@ export default function Commands({ tab }) {
 
   function handleClick(newstatus, command, item) {
 
+    let last_update = (new Date()).toUTCString()
     // let puturl = "http://localhost:8080/api/commands/changestatus";
     let puturl = "https://adr.cs-campus.fr/projet-adr/server/api/commands/changestatus";
     const toPut = {
       id: command._id,
       item_id: item.id,
+      last_update: last_update,
       status: newstatus
     };
     console.log("toPut", toPut);
     axios.put(puturl, toPut)
       .then(() => {
-        updateCommands(toPut.id, toPut.item_id, toPut.status)
+        updateCommands(toPut.id, toPut.item_id, toPut.status, toPut.last_update)
       });
   }
 
   function timeSince(date) {
 
     var seconds = Math.floor((new Date() - date) / 1000);
-  
+
     var interval = seconds / 31536000;
-  
+
     if (interval > 1) {
       return Math.floor(interval) + " years";
     }
@@ -145,8 +148,8 @@ export default function Commands({ tab }) {
     )
   }
 
-  function articleList(foodtype) {
-    let  commands_array = tab.id ==="archived" ? commands.slice(0).reverse() : commands;
+  function commandList(foodtype) {
+    let commands_array = tab.id === "archived" ? commands.slice(0).reverse() : commands;
     return (
       commands_array.map((command) => {
         let mappingOfCommand = mapCommand(command, foodtype);
@@ -170,14 +173,18 @@ export default function Commands({ tab }) {
   // console.log(commands)
   return (
     <main>
-      <div className="ctnr_commands">
+      <div className="ecran_commands">
         <div className="left side ">
           <h2>Pizzas</h2>
-          {articleList("pizzas")}
+          <div className="commands">
+            {commandList("pizzas")}
+          </div>
         </div>
         <div className="right side">
           <h2>Fritures</h2>
-          {articleList("fritures")}
+          <div className="commands">
+            {commandList("fritures")}
+          </div>
         </div>
       </div>
 
