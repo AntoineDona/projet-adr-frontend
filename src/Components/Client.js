@@ -105,9 +105,9 @@ export default function Client() {
                 <h3>{command.name === " " ? "Sans Nom" : command.name}</h3>
                 <span>{timeSince(Date.parse(command.date))} ago</span>
               </div>
-              {/* <div className="articles">
+              <div className="articles">
                 {mappingOfCommand}
-              </div> */}
+              </div>
             </div>
           )
         } else { return ("") }

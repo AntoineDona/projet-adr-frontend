@@ -231,6 +231,9 @@ font-size: 14px;
   min-width: 320px;
   margin: 10px;
 }
+.ecran_clients{
+  margin-top: -80px;
+}
 
 .side h2{
   width: 100%;
@@ -269,7 +272,7 @@ font-size: 14px;
 
 .client .commande{
   flex-shrink: 0;
-  width: unset;
+  /* width: unset; */
 }
 
 .commande h3{
