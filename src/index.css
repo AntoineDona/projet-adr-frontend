@@ -300,8 +300,9 @@ input[type="text"] {
 }
 
 .client .commande {
-  flex-shrink: 0;
-  width: auto;
+  /* flex-shrink: 0; */
+  width: 40%;
+  min-width: unset;
   /* width: unset; */
 }
 
