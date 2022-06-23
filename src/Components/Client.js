@@ -5,7 +5,7 @@ export default function Client() {
 
   const [commands, setCommand] = useState([])
   // let geturl = "http://localhost:8080/api/commands/";
-  let geturl = "https://adr.cs-campus.fr/projet-adr/server/api/commands/";
+  let geturl = "https://adr.cs-campus.fr/projet-adr/api/commands/";
 
   useEffect(() => {
     // console.log("running useEffect");

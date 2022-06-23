@@ -5,7 +5,7 @@ export default function Commands({ tab }) {
 
   const [commands, setCommand] = useState([])
   // let geturl = "http://localhost:8080/api/commands/gettype/" + tab.type;
-  let geturl = "https://adr.cs-campus.fr/projet-adr/server/api/commands/gettype/" + tab.type;
+  let geturl = "https://adr.cs-campus.fr/projet-adr/api/commands/gettype/" + tab.type;
 
   useEffect(() => {
     // console.log("running useEffect");
@@ -80,7 +80,7 @@ export default function Commands({ tab }) {
 
     let last_update = (new Date()).toUTCString()
     // let puturl = "http://localhost:8080/api/commands/changestatus";
-    let puturl = "https://adr.cs-campus.fr/projet-adr/server/api/commands/changestatus";
+    let puturl = "https://adr.cs-campus.fr/projet-adr/api/commands/changestatus";
     const toPut = {
       id: command._id,
       item_id: item.id,
