@@ -1,11 +1,11 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import {API_URL} from '../config'
 
 export default function Client() {
 
   const [commands, setCommand] = useState([])
-  // let geturl = "http://localhost:8080/api/commands/";
-  let geturl = "https://adr.cs-campus.fr/projet-adr/api/commands/";
+  let geturl = `${API_URL}/commands/`;
 
   useEffect(() => {
     // console.log("running useEffect");

@@ -1,11 +1,13 @@
 import React, { useState } from "react"
 import axios from 'axios';
 import Menu from './Menu';
+import {API_URL} from '../config'
 
 export default function Caisse() {
   const [commands, addCommand] = useState([]);
   const [name, setName] = useState("");
   const [tab, setTab] = useState("pizzas");
+  const [error, setError] = useState({});
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -33,7 +35,8 @@ export default function Caisse() {
       "content": commands,
       "last_update":(new Date()).toUTCString() 
     }
-    axios.post(`https://adr.cs-campus.fr/projet-adr/api/commands/add`, toPost)
+    axios.post(`${API_URL}/commands/add`, toPost)
+    // axios.post(`https://adr.cs-campus.fr/projet-adr/api/commands/add`, toPost)
     // axios.post(`http://localhost:8080/api/commands/add`, toPost)
       .then(res => {
         console.log("it worked!!");
@@ -41,7 +44,7 @@ export default function Caisse() {
         addCommand([]);
       })
       .catch(error => {
-        this.setState({ errorMessage: error.message });
+        setError({ errorMessage: error.message });
         console.error('There was an error!', error);
       });
   }
