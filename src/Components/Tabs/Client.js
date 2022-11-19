@@ -1,8 +1,8 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import {API_URL} from '../config'
-import useWebSocket from "../websocket/WebSocketHandler"
-import {timeSince} from "../utils/time"
+import {API_URL} from '../../config'
+import useWebSocket from "../../websocket/WebSocketHandler"
+import {timeSince} from "../../utils/time"
 
 export default function Client() {
 

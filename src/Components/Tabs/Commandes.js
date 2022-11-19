@@ -1,9 +1,9 @@
 import React from "react";
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { API_URL } from '../config';
-import useWebSocket from '../websocket/WebSocketHandler';
-import {timeSince} from '../utils/time'
+import { API_URL } from '../../config';
+import useWebSocket from '../../websocket/WebSocketHandler';
+import {timeSince} from '../../utils/time'
 
 export default function Commands({ tab }) {
   // Composant qui affiche des commandes et les gères, correspond à : En cuisine, En attente, Archivés
