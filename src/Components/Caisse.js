@@ -4,7 +4,7 @@ import Menu from './Menu';
 import {API_URL} from '../config'
 
 export default function Caisse() {
-  const [commands, addCommand] = useState([]);
+  const [command, addCommand] = useState([]);
   const [name, setName] = useState("");
   const [tab, setTab] = useState("pizzas");
   const [error, setError] = useState({});
@@ -32,7 +32,7 @@ export default function Caisse() {
     const toPost = {
       "name": name===""? " " : name,
       "date": (new Date()).toUTCString(),
-      "content": commands,
+      "content": command,
       "last_update":(new Date()).toUTCString() 
     }
     axios.post(`${API_URL}/commands/add`, toPost)
@@ -67,7 +67,7 @@ export default function Caisse() {
             
           </form>
           <Menu
-            commands={commands}
+            command={command}
             addCommand={addCommand}
             tab={tab}
             setTab={setTab}
@@ -77,7 +77,7 @@ export default function Caisse() {
           <h2>Recap de la commande</h2>
           <div className="recap">
             <ul>
-              {commands.map(function (command, i) {
+              {command.map(function (command, i) {
                 return (
                   <li key={i}>{command.name + (command.option ? (" - " + command.option) : "")}</li>
                 )

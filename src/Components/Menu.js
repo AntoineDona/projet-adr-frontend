@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-export default function Menu({commands, addCommand, tab, setTab}) {
+export default function Menu({command, addCommand, tab, setTab}) {
     let complementary_tab = "fritures";
 
     const [contenu] = useState({
@@ -16,15 +16,15 @@ export default function Menu({commands, addCommand, tab, setTab}) {
                     contenu.options.map(function (option,i) {
                         return (
                             <button key={i} className="item" onClick={() => {
-                                console.log(commands.at(-1))
-                                addCommand(commands.slice(0, -1).concat(
+                                console.log(command.at(-1))
+                                addCommand(command.slice(0, -1).concat(
                                     [{
-                                        "id": commands.at(-1).id,
-                                        "name": commands.at(-1).name,
-                                        "type": commands.at(-1).type,
+                                        "id": command.at(-1).id,
+                                        "name": command.at(-1).name,
+                                        "type": command.at(-1).type,
                                         "status": "waiting",
-                                        "last_update": commands.at(-1).last_update,
-                                        "option": commands.at(-1).option ? commands.at(-1).option + ", " + option : "option " + option,
+                                        "last_update": command.at(-1).last_update,
+                                        "option": command.at(-1).option ? command.at(-1).option + ", " + option : "option " + option,
                                     }
                                     ]));
 
@@ -52,9 +52,9 @@ export default function Menu({commands, addCommand, tab, setTab}) {
                         return (
                             <button key={i} className="item" onClick={() => {
                                 addCommand([
-                                    ...commands,
+                                    ...command,
                                     {
-                                        "id": commands.length,
+                                        "id": command.length,
                                         "name": item,
                                         "type": tab,
                                         "status": "waiting",
@@ -62,7 +62,7 @@ export default function Menu({commands, addCommand, tab, setTab}) {
                                         "option": undefined
                                     }
                                 ]);
-                                console.log(commands)
+                                console.log(command)
                             }}>{item}</button>
                         )
                     })
