@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import Header from "./Components/Header"
-import Caisse from "./Components/Caisse"
+import Caisse from "./Components/Tabs/Caisse/Caisse"
 import Commandes from "./Components/Commandes"
 import Client from "./Components/Client"
 import {tabs} from "./data/tabs"

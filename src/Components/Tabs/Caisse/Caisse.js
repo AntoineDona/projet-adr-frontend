@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import axios from 'axios';
 import Menu from './Menu';
-import {API_URL} from '../config'
+import {API_URL} from '../../../config'
 
 export default function Caisse() {
   const [command, addCommand] = useState([]);
