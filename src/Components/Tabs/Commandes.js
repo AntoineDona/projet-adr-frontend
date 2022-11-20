@@ -15,6 +15,8 @@ export default function Commands({ tab }) {
 
   let geturl = `${API_URL}/commands/gettype/${tab.type}`;
   //url défini à partir des variables d'environnement du front, dans config.js
+  // Au final ça sert pas à grand chose la route gettype pcq on retrie et 
+  //on filtre les commandes après pour bien avoir que celles qui nous intéressent...
 
   useEffect(() => {
     // S'execute à chaque changement de tab, fetch les données de la bdd
@@ -117,6 +119,7 @@ export default function Commands({ tab }) {
   // Fonction qui renvoie la liste des commandes d'un certain foodtype (pizza ou friture)
   function commandList(foodtype) {
     let commands_array = tab.id === "archived" ? commands.slice(0).reverse() : commands;
+    // Si c'est des archives on inverse le tableau des commandes pour avoir les plus récentes en haut
     return (
       commands_array.map((command) => {
         // On map sur toutes les commandes
