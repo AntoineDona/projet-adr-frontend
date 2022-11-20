@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { w3cwebsocket as W3CWebSocket } from "websocket";
+import {WS_URL} from "../config"
 
 export default function useWebSocket(setCommands) {
-  const WS_URL = 'ws://localhost:8080'
   useEffect(() => {
     const ws = new W3CWebSocket(WS_URL);
     ws.onopen = () => {
